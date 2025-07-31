@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servis Universal - Motor Honda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --honda-red: #E40521;
+            --honda-red-dark: #C0041B;
+            --honda-gray: #333333;
+            --honda-light: #F5F5F5;
+            --honda-accent: #006BB6;
+            --honda-green: #27ae60;
+            --honda-blue: #3498db;
+            --honda-orange: #e67e22;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f2f5 0%, #e4e8ec 100%);
+            color: var(--honda-gray);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(to right, var(--honda-gray), var(--honda-red));
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 150px;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 10L60 40H90L65 60L75 90L50 70L25 90L35 60L10 40H40Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -70px;
+            right: -70px;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            background: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .logo-icon i {
+            color: var(--honda-red);
+            font-size: 32px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .input-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-group label i {
+            margin-right: 10px;
+            color: var(--honda-red);
+        }
+        
+        .input-group input, .input-group select {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--honda-red);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(228, 5, 33, 0.2);
+        }
+        
+        button {
+            background: linear-gradient(to right, var(--honda-red), var(--honda-red-dark));
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(228, 5, 33, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(228, 5, 33, 0.4);
+        }
+        
+        button i {
+            margin-right: 10px;
+        }
+        
+        .results {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .service-table {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .cost-summary {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: linear-gradient(to right, var(--honda-gray), var(--honda-red));
+            color: white;
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+        
+        tr:hover {
+            background-color: #fff5f6;
+        }
+        
+        .urgent {
+            color: #e74c3c;
+            font-weight: 600;
+            background-color: #ffebee;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .soon {
+            color: #e67e22;
+            font-weight: 600;
+            background-color: #fff4e6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .normal {
+            color: var(--honda-green);
+            font-weight: 600;
+            background-color: #eafaf1;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .replaced {
+            color: #006BB6;
+            font-weight: 600;
+            background-color: #e3f2fd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .cost-summary h2 {
+            margin-bottom: 20px;
+            color: var(--honda-gray);
+            border-bottom: 2px solid var(--honda-red);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .cost-summary h2 i {
+            margin-right: 10px;
+            color: var(--honda-red);
+        }
+        
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .total-cost {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--honda-red);
+            color: var(--honda-gray);
+        }
+        
+        .maintenance-tips {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .maintenance-tips h2 {
+            margin-bottom: 20px;
+            color: var(--honda-gray);
+            border-bottom: 2px solid var(--honda-red);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .maintenance-tips h2 i {
+            margin-right: 10px;
+            color: var(--honda-red);
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .tip-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--honda-red);
+            transition: transform 0.3s;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .tip-card h3 {
+            margin-bottom: 10px;
+            color: var(--honda-gray);
+            display: flex;
+            align-items: center;
+        }
+        
+        .tip-card h3 i {
+            margin-right: 10px;
+            color: var(--honda-red);
+        }
+        
+        .tip-card p {
+            color: #555;
+        }
+        
+        .model-info {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .model-info img {
+            width: 80px;
+            height: 60px;
+            object-fit: contain;
+            margin-right: 15px;
+            border-radius: 5px;
+            background: #f0f0f0;
+            padding: 5px;
+        }
+        
+        .model-info div {
+            flex: 1;
+        }
+        
+        .model-info h4 {
+            color: var(--honda-gray);
+            margin-bottom: 5px;
+        }
+        
+        .model-info p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .honda-badge {
+            display: inline-block;
+            background: var(--honda-red);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .status-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .replace-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .replace-label {
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .replaced .replace-label {
+            color: var(--honda-green);
+            font-weight: 600;
+        }
+        
+        .reset-btn {
+            background: #7f8c8d;
+            margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            font-size: 0.9rem;
+        }
+        
+        .replace-all-btn {
+            background: linear-gradient(to right, var(--honda-green), #2ecc71);
+        }
+        
+        .reset-all-btn {
+            background: linear-gradient(to right, var(--honda-orange), #e67e22);
+        }
+        
+        .reset-status-btn {
+            background: linear-gradient(to right, #7f8c8d, #95a5a6);
+        }
+        
+        .motor-type-icon {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 5px;
+            border-radius: 4px;
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        .matic-icon {
+            background: var(--honda-red);
+        }
+        
+        .sport-icon {
+            background: var(--honda-blue);
+        }
+        
+        .bebek-icon {
+            background: var(--honda-green);
+        }
+        
+        @media (max-width: 768px) {
+            .results {
+                flex-direction: column;
+            }
+            
+            .input-section {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-motorcycle"></i>
+                </div>
+                <div>
+                    <h1>Servis Universal Motor Honda</h1>
+                    <p>Estimator jadwal servis dengan penyesuaian untuk semua tipe motor</p>
+                </div>
+            </div>
+        </header>
+        
+        <section class="input-section">
+            <div class="input-group">
+                <label for="model"><i class="fas fa-motorcycle"></i> Model Motor:</label>
+                <select id="model">
+                    <option value="beat">Honda Beat</option>
+                    <option value="scoopy">Honda Scoopy</option>
+                    <option value="vario">Honda Vario</option>
+                    <option value="pcx">Honda PCX</option>
+                    <option value="adv">Honda ADV</option>
+                    <option value="cbr">Honda CBR</option>
+                    <option value="supra">Honda Supra</option>
+                    <option value="genio">Honda Genio</option>
+                    <option value="megapro">Honda MegaPro</option>
+                    <option value="revo">Honda Revo</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label for="currentKm"><i class="fas fa-tachometer-alt"></i> Kilometer Saat Ini:</label>
+                <input type="number" id="currentKm" value="28760" min="0">
+            </div>
+            
+            <div class="input-group">
+                <label for="year"><i class="fas fa-calendar-alt"></i> Tahun Pembuatan:</label>
+                <input type="number" id="year" value="2022" min="2010" max="2023">
+            </div>
+            
+            <div class="input-group">
+                <label for="type"><i class="fas fa-cogs"></i> Tipe Motor:</label>
+                <select id="type">
+                    <option value="matic">Matic</option>
+                    <option value="sport">Sport</option>
+                    <option value="bebek">Bebek</option>
+                </select>
+            </div>
+            
+            <button id="calculateBtn">
+                <i class="fas fa-calculator"></i> Hitung Servis & Biaya
+            </button>
+            
+            <div class="action-buttons">
+                <button id="replaceAllBtn" class="action-btn replace-all-btn">
+                    <i class="fas fa-check-double"></i> Tandai Semua Sudah Diganti
+                </button>
+                <button id="resetAllBtn" class="action-btn reset-all-btn">
+                    <i class="fas fa-undo"></i> Reset Semua Penggantian
+                </button>
+                <button id="resetBtn" class="action-btn reset-status-btn">
+                    <i class="fas fa-sync-alt"></i> Reset Status
+                </button>
+            </div>
+        </section>
+        
+        <div class="results">
+            <section class="service-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Komponen</th>
+                            <th>Interval (KM)</th>
+                            <th>Status</th>
+                            <th>Estimasi Biaya</th>
+                            <th>Penggantian</th>
+                        </tr>
+                    </thead>
+                    <tbody id="serviceTable">
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 30px;">
+                                <i class="fas fa-motorcycle" style="font-size: 48px; color: #E40521; margin-bottom: 15px;"></i>
+                                <p>Masukkan data motor dan klik "Hitung Servis & Biaya"</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section class="cost-summary">
+                <h2><i class="fas fa-file-invoice-dollar"></i> Ringkasan Biaya Servis</h2>
+                <div id="costDetails">
+                    <div style="text-align: center; padding: 20px; color: #777;">
+                        <i class="fas fa-calculator" style="font-size: 36px; margin-bottom: 15px;"></i>
+                        <p>Biaya servis akan muncul setelah perhitungan</p>
+                    </div>
+                </div>
+                <div class="total-cost">
+                    <span>Total Estimasi Biaya:</span>
+                    <span id="totalCost">Rp 0</span>
+                </div>
+                
+                <div class="model-info">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'><rect width='100' height='60' fill='%23f5f5f5'/><path d='M20 30 Q 40 10, 60 30 T 100 30 L 85 45 L 70 45 L 60 30 L 40 30 L 30 45 L 15 45 L 20 30' fill='%23E40521'/><circle cx='30' cy='45' r='8' fill='%23333'/><circle cx='70' cy='45' r='8' fill='%23333'/></svg>" alt="Motor">
+                    <div>
+                        <h4>Honda Beat Street</h4>
+                        <p><span class="motor-type-icon matic-icon">M</span> 2022 • 28.760 KM</p>
+                        <div class="honda-badge">HONDA ORIGINAL PARTS</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <section class="maintenance-tips">
+            <h2><i class="fas fa-tools"></i> Tips Perawatan Motor Honda</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3><i class="fas fa-oil-can"></i> Servis Berkala</h3>
+                    <p>Lakukan servis berkala sesuai rekomendasi pabrikan untuk menjaga performa motor dan mencegah kerusakan komponen utama.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-tire"></i> Periksa Tekanan Ban</h3>
+                    <p>Periksa tekanan ban secara rutin (minimal 2 minggu sekali) untuk kenyamanan berkendara dan hemat bahan bakar.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-filter"></i> Gunakan Oli Original</h3>
+                    <p>Selalu gunakan oli mesin dan oli gardan original Honda untuk perlindungan mesin yang optimal dan masa pakai lebih lama.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-car-brake"></i> Periksa Sistem Rem</h3>
+                    <p>Pastikan sistem rem dalam kondisi baik dan ganti kampas rem jika ketebalan sudah di bawah 1.5mm untuk keselamatan berkendara.</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 Estimator Servis Universal Motor Honda | Informasi biaya dapat bervariasi tergantung bengkel dan kondisi motor</p>
+            <p style="margin-top: 10px; color: #E40521; font-weight: bold;">
+                <i class="fas fa-heart"></i> Merk dagang Honda digunakan sesuai kebijakan penggunaan yang wajar
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Data servis untuk berbagai model motor Honda
+            const serviceData = {
+                // Matic
+                "beat": [
+                    { component: "Oli Mesin & Filter Oli", interval: 4000, price: 130000 },
+                    { component: "Busi", interval: 16000, price: 40000 },
+                    { component: "Oli Transmisi", interval: 16000, price: 60000 },
+                    { component: "V-Belt", interval: 24000, price: 250000 },
+                    { component: "Roller", interval: 24000, price: 150000 },
+                    { component: "Filter Udara", interval: 12000, price: 70000 },
+                    { component: "Kampas Rem Depan", interval: 15000, price: 150000 },
+                    { component: "Kampas Rem Belakang", interval: 15000, price: 120000 },
+                    { component: "Oli Rem", interval: 20000, price: 80000 },
+                    { component: "Aki", interval: 30000, price: 250000 }
+                ],
+                "scoopy": [
+                    { component: "Oli Mesin & Filter Oli", interval: 4000, price: 140000 },
+                    { component: "Busi", interval: 16000, price: 45000 },
+                    { component: "Oli Transmisi", interval: 16000, price: 65000 },
+                    { component: "V-Belt", interval: 25000, price: 270000 },
+                    { component: "Roller", interval: 25000, price: 160000 },
+                    { component: "Filter Udara", interval: 12000, price: 75000 },
+                    { component: "Kampas Rem Depan", interval: 15000, price: 160000 },
+                    { component: "Kampas Rem Belakang", interval: 15000, price: 130000 },
+                    { component: "Oli Rem", interval: 20000, price: 85000 },
+                    { component: "Aki", interval: 30000, price: 260000 }
+                ],
+                "vario": [
+                    { component: "Oli Mesin & Filter Oli", interval: 4000, price: 150000 },
+                    { component: "Busi", interval: 16000, price: 50000 },
+                    { component: "Oli Transmisi", interval: 16000, price: 70000 },
+                    { component: "V-Belt", interval: 25000, price: 280000 },
+                    { component: "Roller", interval: 25000, price: 170000 },
+                    { component: "Filter Udara", interval: 12000, price: 80000 },
+                    { component: "Kampas Rem Depan", interval: 15000, price: 170000 },
+                    { component: "Kampas Rem Belakang", interval: 15000, price: 140000 },
+                    { component: "Oli Rem", interval: 20000, price: 90000 },
+                    { component: "Aki", interval: 30000, price: 270000 }
+                ],
+                "pcx": [
+                    { component: "Oli Mesin & Filter Oli", interval: 4000, price: 180000 },
+                    { component: "Busi", interval: 16000, price: 60000 },
+                    { component: "Oli Transmisi", interval: 16000, price: 80000 },
+                    { component: "V-Belt", interval: 25000, price: 350000 },
+                    { component: "Roller", interval: 25000, price: 200000 },
+                    { component: "Filter Udara", interval: 12000, price: 90000 },
+                    { component: "Kampas Rem Depan", interval: 15000, price: 200000 },
+                    { component: "Kampas Rem Belakang", interval: 15000, price: 180000 },
+                    { component: "Oli Rem", interval: 20000, price: 100000 },
+                    { component: "Aki", interval: 30000, price: 350000 }
+                ],
+                "adv": [
+                    { component: "Oli Mesin & Filter Oli", interval: 4000, price: 200000 },
+                    { component: "Busi", interval: 16000, price: 70000 },
+                    { component: "Oli Transmisi", interval: 16000, price: 90000 },
+                    { component: "V-Belt", interval: 25000, price: 380000 },
+                    { component: "Roller", interval: 25000, price: 220000 },
+                    { component: "Filter Udara", interval: 12000, price: 100000 },
+                    { component: "Kampas Rem Depan", interval: 15000, price: 220000 },
+                    { component: "Kampas Rem Belakang", interval: 15000, price: 200000 },
+                    { component: "Oli Rem", interval: 20000, price: 120000 },
+                    { component: "Aki", interval: 30000, price: 380000 }
+                ],
+                
+                // Sport
+                "cbr": [
+                    { component: "Oli Mesin & Filter Oli", interval: 3000, price: 220000 },
+                    { component: "Busi", interval: 8000, price: 80000 },
+                    { component: "Rantai", interval: 5000, price: 350000 },
+                    { component: "Sprocket", interval: 15000, price: 300000 },
+                    { component: "Filter Udara", interval: 6000, price: 120000 },
+                    { component: "Kampas Rem Depan", interval: 10000, price: 250000 },
+                    { component: "Kampas Rem Belakang", interval: 15000, price: 220000 },
+                    { component: "Oli Rem", interval: 10000, price: 150000 },
+                    { component: "Aki", interval: 20000, price: 400000 },
+                    { component: "Pembersihan Karburator", interval: 10000, price: 150000 }
+                ],
+                
+                // Bebek
+                "supra": [
+                    { component: "Oli Mesin & Filter Oli", interval: 3000, price: 100000 },
+                    { component: "Busi", interval: 10000, price: 35000 },
+                    { component: "Rantai", interval: 8000, price: 180000 },
+                    { component: "Sprocket", interval: 20000, price: 150000 },
+                    { component: "Filter Udara", interval: 8000, price: 60000 },
+                    { component: "Kampas Rem Depan", interval: 12000, price: 120000 },
+                    { component: "Kampas Rem Belakang", interval: 15000, price: 100000 },
+                    { component: "Oli Rem", interval: 15000, price: 70000 },
+                    { component: "Aki", interval: 25000, price: 220000 },
+                    { component: "Pembersihan Karburator", interval: 12000, price: 100000 }
+                ],
+                "genio": [
+                    { component: "Oli Mesin & Filter Oli", interval: 3000, price: 110000 },
+                    { component: "Busi", interval: 10000, price: 40000 },
+                    { component: "Rantai", interval: 8000, price: 200000 },
+                    { component: "Sprocket", interval: 20000, price: 180000 },
+                    { component: "Filter Udara", interval: 8000, price: 70000 },
+                    { component: "Kampas Rem Depan", interval: 12000, price: 130000 },
+                    { component: "Kampas Rem Belakang", interval: 15000, price: 110000 },
+                    { component: "Oli Rem", interval: 15000, price: 80000 },
+                    { component: "Aki", interval: 25000, price: 250000 },
+                    { component: "Pembersihan Karburator", interval: 12000, price: 120000 }
+                ],
+                "megapro": [
+                    { component: "Oli Mesin & Filter Oli", interval: 3000, price: 120000 },
+                    { component: "Busi", interval: 10000, price: 45000 },
+                    { component: "Rantai", interval: 8000, price: 220000 },
+                    { component: "Sprocket", interval: 20000, price: 200000 },
+                    { component: "Filter Udara", interval: 8000, price: 75000 },
+                    { component: "Kampas Rem Depan", interval: 12000, price: 140000 },
+                    { component: "Kampas Rem Belakang", interval: 15000, price: 120000 },
+                    { component: "Oli Rem", interval: 15000, price: 85000 },
+                    { component: "Aki", interval: 25000, price: 280000 },
+                    { component: "Pembersihan Karburator", interval: 12000, price: 130000 }
+                ],
+                "revo": [
+                    { component: "Oli Mesin & Filter Oli", interval: 3000, price: 90000 },
+                    { component: "Busi", interval: 10000, price: 30000 },
+                    { component: "Rantai", interval: 8000, price: 150000 },
+                    { component: "Sprocket", interval: 20000, price: 130000 },
+                    { component: "Filter Udara", interval: 8000, price: 55000 },
+                    { component: "Kampas Rem Depan", interval: 12000, price: 100000 },
+                    { component: "Kampas Rem Belakang", interval: 15000, price: 90000 },
+                    { component: "Oli Rem", interval: 15000, price: 60000 },
+                    { component: "Aki", interval: 25000, price: 200000 },
+                    { component: "Pembersihan Karburator", interval: 12000, price: 90000 }
+                ]
+            };
+
+            // Nama model untuk ditampilkan
+            const modelNames = {
+                "beat": "Honda Beat",
+                "scoopy": "Honda Scoopy",
+                "vario": "Honda Vario",
+                "pcx": "Honda PCX",
+                "adv": "Honda ADV",
+                "cbr": "Honda CBR",
+                "supra": "Honda Supra",
+                "genio": "Honda Genio",
+                "megapro": "Honda MegaPro",
+                "revo": "Honda Revo"
+            };
+            
+            // Tipe motor untuk ikon
+            const modelTypes = {
+                "beat": "matic",
+                "scoopy": "matic",
+                "vario": "matic",
+                "pcx": "matic",
+                "adv": "matic",
+                "cbr": "sport",
+                "supra": "bebek",
+                "genio": "bebek",
+                "megapro": "bebek",
+                "revo": "bebek"
+            };
+            
+            // Status penggantian komponen (disimpan dalam objek untuk setiap model)
+            let replacedStatus = {};
+            
+            const calculateBtn = document.getElementById('calculateBtn');
+            const replaceAllBtn = document.getElementById('replaceAllBtn');
+            const resetAllBtn = document.getElementById('resetAllBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const serviceTable = document.getElementById('serviceTable');
+            const costDetails = document.getElementById('costDetails');
+            const totalCost = document.getElementById('totalCost');
+            const modelInfo = document.querySelector('.model-info h4');
+            const modelDesc = document.querySelector('.model-info p');
+            const modelImg = document.querySelector('.model-info img');
+            
+            // Fungsi untuk membuat kunci unik untuk setiap komponen
+            function getComponentKey(model, component) {
+                return `${model}_${component.replace(/ /g, '_')}`;
+            }
+            
+            // Fungsi untuk memuat status penggantian dari localStorage
+            function loadReplacedStatus() {
+                const savedStatus = localStorage.getItem('hondaReplacedStatus');
+                if (savedStatus) {
+                    replacedStatus = JSON.parse(savedStatus);
+                }
+            }
+            
+            // Fungsi untuk menyimpan status penggantian ke localStorage
+            function saveReplacedStatus() {
+                localStorage.setItem('hondaReplacedStatus', JSON.stringify(replacedStatus));
+            }
+            
+            // Fungsi untuk merender tabel servis
+            function renderServiceTable() {
+                const model = document.getElementById('model').value;
+                const km = parseInt(document.getElementById('currentKm').value) || 0;
+                const year = parseInt(document.getElementById('year').value) || 2022;
+                const type = modelTypes[model] || "matic";
+                
+                const data = serviceData[model] || serviceData.beat;
+                
+                let tableHTML = '';
+                let total = 0;
+                let urgentItems = [];
+                
+                data.forEach(item => {
+                    const componentKey = getComponentKey(model, item.component);
+                    const isReplaced = replacedStatus[componentKey] || false;
+                    
+                    const lastChange = Math.floor(km / item.interval) * item.interval;
+                    const nextChange = lastChange + item.interval;
+                    const kmSinceLast = km - lastChange;
+                    
+                    let statusText = '';
+                    let statusClass = '';
+                    
+                    if (isReplaced) {
+                        statusText = "Sudah diganti";
+                        statusClass = 'replaced';
+                    } else {
+                        // Hitung status berdasarkan kilometer
+                        if (kmSinceLast > item.interval * 0.8) {
+                            statusText = `Harus diganti (terlewat ${kmSinceLast} km)`;
+                            statusClass = 'urgent';
+                            total += item.price;
+                            urgentItems.push(item);
+                        } else if (kmSinceLast > item.interval * 0.6) {
+                            statusText = `Segera diganti (${nextChange - km} km lagi)`;
+                            statusClass = 'soon';
+                        } else {
+                            statusText = `Normal (${nextChange - km} km lagi)`;
+                            statusClass = 'normal';
+                        }
+                        
+                        // Penanganan khusus untuk aki berdasarkan tahun
+                        if (item.component === "Aki" && (new Date().getFullYear() - year) >= 2) {
+                            statusText = "Harus diganti (usia >2 tahun)";
+                            statusClass = 'urgent';
+                            total += item.price;
+                            if (!urgentItems.includes(item)) urgentItems.push(item);
+                        }
+                    }
+                    
+                    tableHTML += `
+                        <tr>
+                            <td>${item.component}</td>
+                            <td>${item.interval.toLocaleString()} KM</td>
+                            <td><span class="${statusClass}">${statusText}</span></td>
+                            <td>${isReplaced ? '-' : 'Rp ' + item.price.toLocaleString()}</td>
+                            <td class="status-control ${isReplaced ? 'replaced' : ''}">
+                                <input type="checkbox" class="replace-checkbox" id="${componentKey}" 
+                                    ${isReplaced ? 'checked' : ''} 
+                                    data-component="${item.component}"
+                                    data-price="${item.price}">
+                                <label for="${componentKey}" class="replace-label">
+                                    ${isReplaced ? '✓ Diganti' : 'Tandai sudah diganti'}
+                                </label>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                serviceTable.innerHTML = tableHTML;
+                
+                // Tambahkan event listener untuk checkbox
+                document.querySelectorAll('.replace-checkbox').forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        const componentKey = this.id;
+                        const isChecked = this.checked;
+                        replacedStatus[componentKey] = isChecked;
+                        saveReplacedStatus();
+                        renderServiceTable();
+                    });
+                });
+                
+                // Render cost details
+                let costHTML = '';
+                
+                if (urgentItems.length === 0) {
+                    costHTML = '<p style="text-align: center; padding: 20px; color: #27ae60; font-weight: 500;">Tidak ada komponen yang harus segera diganti. Motor dalam kondisi baik!</p>';
+                } else {
+                    urgentItems.forEach(item => {
+                        const componentKey = getComponentKey(model, item.component);
+                        if (!replacedStatus[componentKey]) {
+                            costHTML += `
+                                <div class="cost-item">
+                                    <span>${item.component}</span>
+                                    <span>Rp ${item.price.toLocaleString()}</span>
+                                </div>
+                            `;
+                        }
+                    });
+                    
+                    // Jika semua urgent items sudah diganti
+                    if (costHTML === '') {
+                        costHTML = '<p style="text-align: center; padding: 20px; color: #27ae60; font-weight: 500;">Semua komponen urgent sudah diganti!</p>';
+                    }
+                }
+                
+                costDetails.innerHTML = costHTML;
+                totalCost.textContent = `Rp ${total.toLocaleString()}`;
+                
+                // Update model info
+                modelInfo.textContent = modelNames[model] || "Honda Beat";
+                
+                // Buat ikon berdasarkan tipe motor
+                let typeIcon = "";
+                let typeText = "";
+                if (type === "matic") {
+                    typeIcon = '<span class="motor-type-icon matic-icon">M</span>';
+                    typeText = "Matic";
+                } else if (type === "sport") {
+                    typeIcon = '<span class="motor-type-icon sport-icon">S</span>';
+                    typeText = "Sport";
+                } else {
+                    typeIcon = '<span class="motor-type-icon bebek-icon">B</span>';
+                    typeText = "Bebek";
+                }
+                
+                modelDesc.innerHTML = `${typeIcon} ${year} • ${km.toLocaleString()} KM`;
+                
+                // Update gambar motor berdasarkan model
+                updateMotorImage(model);
+            }
+            
+            // Fungsi untuk mengupdate gambar motor
+            function updateMotorImage(model) {
+                let svgContent = '';
+                
+                if (model === "beat" || model === "scoopy" || model === "vario" || model === "pcx" || model === "adv") {
+                    // Matic
+                    svgContent = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'>
+                        <rect width='100' height='60' fill='#f5f5f5'/>
+                        <path d='M20 30 Q 40 10, 60 30 T 100 30 L 85 45 L 70 45 L 60 30 L 40 30 L 30 45 L 15 45 L 20 30' fill='#E40521'/>
+                        <circle cx='30' cy='45' r='8' fill='#333'/>
+                        <circle cx='70' cy='45' r='8' fill='#333'/>
+                    </svg>`;
+                } else if (model === "cbr") {
+                    // Sport
+                    svgContent = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'>
+                        <rect width='100' height='60' fill='#f5f5f5'/>
+                        <path d='M15 40 L25 25 L40 20 L60 20 L75 25 L85 40 L80 50 L70 45 L60 40 L40 40 L30 45 L20 50 Z' fill='#E40521'/>
+                        <circle cx='30' cy='45' r='8' fill='#333'/>
+                        <circle cx='70' cy='45' r='8' fill='#333'/>
+                        <rect x='40' y='15' width='20' height='10' rx='2' fill='#333'/>
+                    </svg>`;
+                } else {
+                    // Bebek
+                    svgContent = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'>
+                        <rect width='100' height='60' fill='#f5f5f5'/>
+                        <path d='M20 40 L30 25 L40 20 L60 20 L70 25 L80 40 L75 45 L65 40 L55 45 L45 45 L35 40 L25 45 L20 40 Z' fill='#27ae60'/>
+                        <circle cx='35' cy='45' r='8' fill='#333'/>
+                        <circle cx='65' cy='45' r='8' fill='#333'/>
+                        <rect x='45' y='15' width='10' height='10' rx='2' fill='#333'/>
+                    </svg>`;
+                }
+                
+                modelImg.src = `data:image/svg+xml;utf8,${encodeURIComponent(svgContent)}`;
+            }
+            
+            // Fungsi untuk menandai semua komponen sudah diganti
+            function markAllAsReplaced() {
+                const model = document.getElementById('model').value;
+                const data = serviceData[model] || serviceData.beat;
+                
+                data.forEach(item => {
+                    const componentKey = getComponentKey(model, item.component);
+                    replacedStatus[componentKey] = true;
+                });
+                
+                saveReplacedStatus();
+                renderServiceTable();
+            }
+            
+            // Fungsi untuk mereset semua status penggantian
+            function resetAllReplacedStatus() {
+                const model = document.getElementById('model').value;
+                const data = serviceData[model] || serviceData.beat;
+                
+                data.forEach(item => {
+                    const componentKey = getComponentKey(model, item.component);
+                    replacedStatus[componentKey] = false;
+                });
+                
+                saveReplacedStatus();
+                renderServiceTable();
+            }
+            
+            // Fungsi untuk mereset semua status penggantian di semua model
+            function resetAllStatus() {
+                if (confirm("Apakah Anda yakin ingin mereset semua status penggantian komponen untuk semua model?")) {
+                    replacedStatus = {};
+                    saveReplacedStatus();
+                    renderServiceTable();
+                }
+            }
+            
+            // Event listener
+            calculateBtn.addEventListener('click', renderServiceTable);
+            replaceAllBtn.addEventListener('click', markAllAsReplaced);
+            resetAllBtn.addEventListener('click', resetAllReplacedStatus);
+            resetBtn.addEventListener('click', resetAllStatus);
+            
+            // Muat status penggantian saat halaman dimuat
+            loadReplacedStatus();
+            
+            // Render awal
+            renderServiceTable();
+        });
+    </script>
+</body>
+</html>
